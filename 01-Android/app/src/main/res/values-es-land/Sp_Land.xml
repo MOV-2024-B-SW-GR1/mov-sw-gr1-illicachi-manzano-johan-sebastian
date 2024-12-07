@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="saludo">paisaje</string>
+    <color name="saludo_color">#9E9643</color>
+    <color name="background_color">#8BC34A</color>
+</resources>

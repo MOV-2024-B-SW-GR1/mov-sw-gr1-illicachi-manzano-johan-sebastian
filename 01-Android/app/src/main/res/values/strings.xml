@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">sw2024bgr1_jsim</string>
+    <string name="saludo">Hello Friends</string>
+    <color name="saludo_color">#9D2626</color>
+</resources>
