@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuVerObras"
+        android:title="Ver Obras" />
+    <item
+        android:id="@+id/menuEditarArtista"
+        android:title="Editar artista" />
+    <item
+        android:id="@+id/menuEliminarArtista"
+        android:title="Eliminar artista" />
+</menu>

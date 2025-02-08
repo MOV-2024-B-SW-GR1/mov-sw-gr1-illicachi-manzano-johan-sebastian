@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "501259995074",
+    "project_id": "mov-2024b-sw-gr1-jsim",
+    "storage_bucket": "mov-2024b-sw-gr1-jsim.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501259995074:android:231d2b3c4e7cbf6b5d385b",
+        "android_client_info": {
+          "package_name": "com.example.proyecto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8Y9J50ID2-3e7TBwv4iG7XbzB-_DEEYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501259995074:android:dc519005f7421e215d385b",
+        "android_client_info": {
+          "package_name": "com.example.sw2024bgr1_jsim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8Y9J50ID2-3e7TBwv4iG7XbzB-_DEEYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

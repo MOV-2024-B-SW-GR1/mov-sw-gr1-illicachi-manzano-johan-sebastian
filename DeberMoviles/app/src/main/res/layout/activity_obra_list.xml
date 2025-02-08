@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título del curso -->
+    <TextView
+        android:id="@+id/tvArtistaTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Nombre del Artista"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Botón para agregar estudiantes -->
+
+    <!-- Lista de estudiantes -->
+    <ListView
+        android:id="@+id/listViewObras"
+        android:layout_width="match_parent"
+        android:layout_height="617dp" />
+
+    <Button
+        android:id="@+id/btnAgregarObra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Agregar Obra" />
+</LinearLayout>
