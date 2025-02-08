@@ -13,6 +13,8 @@ class ActivityAgregarEditarArtista : AppCompatActivity() {
     private lateinit var etEdadArtista: EditText
     private lateinit var etNacionalidadArtista: EditText
     private lateinit var etFechaNacimientoArtista: EditText
+    private lateinit var etLatitudArtista: EditText
+    private lateinit var etAltitudArtista: EditText
     private lateinit var btnGuardarArtista: Button
     private var artistaId: Int? = null
 
@@ -25,6 +27,8 @@ class ActivityAgregarEditarArtista : AppCompatActivity() {
         etEdadArtista = findViewById(R.id.etEdadArtista)
         etNacionalidadArtista = findViewById(R.id.etNacionalidadArtista)
         etFechaNacimientoArtista = findViewById(R.id.etFechaNacimientoArtista)
+        etLatitudArtista = findViewById(R.id.etLatitud)
+        etAltitudArtista = findViewById(R.id.etAltitud)
         btnGuardarArtista = findViewById(R.id.btnGuardarArtista)
         val tvFormularioTitulo: TextView = findViewById(R.id.tvFormularioTitulo)
         tvFormularioTitulo.text = if (artistaId != null) "Editar Artista" else "Agregar Artista"
@@ -38,6 +42,10 @@ class ActivityAgregarEditarArtista : AppCompatActivity() {
                 etEdadArtista.setText(it.edad.toString())
                 etNacionalidadArtista.setText(it.nacionalidad)
                 etFechaNacimientoArtista.setText(it.fechaNacimiento.toString())
+                etLatitudArtista.setText(it.latitud.toString())
+                etAltitudArtista.setText(it.altitud.toString())
+
+
             }
         }
 
@@ -46,14 +54,17 @@ class ActivityAgregarEditarArtista : AppCompatActivity() {
             val edad = etEdadArtista.text.toString().toIntOrNull()
             val nacionalidad = etNacionalidadArtista.text.toString()
             val fechaNacimiento = etFechaNacimientoArtista.text.toString()
+            val latitud = etLatitudArtista.text.toString().toDoubleOrNull()
+            val altitud = etAltitudArtista.text.toString().toDoubleOrNull()
 
-            if (nombre.isNotEmpty() && edad != null && nacionalidad.isNotEmpty() && fechaNacimiento.isNotEmpty()) {
+
+            if (nombre.isNotEmpty() && edad != null && nacionalidad.isNotEmpty() && fechaNacimiento.isNotEmpty() && latitud != null && altitud != null) {
                 if (artistaId != null) {
-                    controlador.actualizarArtista(Artista(artistaId!!, nombre, edad, nacionalidad, fechaNacimiento))
+                    controlador.actualizarArtista(Artista(artistaId!!, nombre, edad, nacionalidad, fechaNacimiento,latitud, altitud))
                     Toast.makeText(this, "Artista actualizado", Toast.LENGTH_SHORT).show()
                 } else {
                     val nuevoId = (controlador.listarArtistas().maxOfOrNull { it.id } ?: 0) + 1
-                    controlador.crearArtista(Artista(nuevoId, nombre, edad, nacionalidad, fechaNacimiento))
+                    controlador.crearArtista(Artista(nuevoId, nombre, edad, nacionalidad, fechaNacimiento, latitud, altitud))
                     Toast.makeText(this, "Artista creado", Toast.LENGTH_SHORT).show()
                 }
                 finish()

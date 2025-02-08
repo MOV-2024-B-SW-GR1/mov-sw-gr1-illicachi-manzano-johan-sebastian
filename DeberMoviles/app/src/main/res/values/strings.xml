@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DeberMoviles</string>
+    <string name="title_activity_maps_placeholder">MapsPlaceholder</string>
 </resources>

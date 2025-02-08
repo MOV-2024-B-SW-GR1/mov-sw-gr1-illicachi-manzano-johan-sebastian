@@ -8,17 +8,19 @@ class SqliteHelper(context: Context?) : SQLiteOpenHelper(
     context,
     "ArtistasDB", // Nombre de la base de datos
     null,
-    1 // Versión inicial
+    2 // Nueva versión de la base de datos
 ) {
     override fun onCreate(db: SQLiteDatabase?) {
-        // Crear tabla Artista
+        // Crear tabla Artista con latitud y altitud
         val scriptSqlCrearArtista = """
             CREATE TABLE Artista (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre VARCHAR(250),
                 edad INTEGER,
                 nacionalidad VARCHAR(250),
-                fecha_nacimiento DATE
+                fecha_nacimiento DATE,
+                latitud REAL,
+                altitud REAL
             )
         """.trimIndent()
         db?.execSQL(scriptSqlCrearArtista)
@@ -40,10 +42,10 @@ class SqliteHelper(context: Context?) : SQLiteOpenHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < newVersion) {
-            db?.execSQL("DROP TABLE IF EXISTS Obra")
-            db?.execSQL("DROP TABLE IF EXISTS Artista")
-            onCreate(db) // Recrea las tablas
+        if (oldVersion < 2) {
+            // Agregar las columnas latitud y altitud si la versión anterior es menor a 2
+            db?.execSQL("ALTER TABLE Artista ADD COLUMN latitud REAL DEFAULT 0.0")
+            db?.execSQL("ALTER TABLE Artista ADD COLUMN altitud REAL DEFAULT 0.0")
         }
     }
 

@@ -46,6 +46,22 @@
         android:inputType="datetime|date"
         android:minHeight="48dp" />
 
+    <EditText
+        android:id="@+id/etLatitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Latitud 00.00"
+        android:inputType="datetime|date"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/etAltitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Altitud 00.00"
+        android:inputType="datetime|date"
+        android:minHeight="48dp" />
+
     <Button
         android:id="@+id/btnGuardarArtista"
         android:layout_width="match_parent"

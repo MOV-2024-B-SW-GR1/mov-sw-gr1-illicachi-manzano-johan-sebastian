@@ -3,10 +3,10 @@ package com.example.debermoviles
 import android.content.ContentValues
 import android.content.Context
 
-class Controlador (context: Context) {
+class Controlador(context: Context) {
     private val dbHelper = SqliteHelper(context)
 
-    //Crear Artista
+    // Crear Artista
     fun crearArtista(artista: Artista) {
         val db = dbHelper.writableDatabase
         val valores = ContentValues().apply {
@@ -15,31 +15,35 @@ class Controlador (context: Context) {
             put("edad", artista.edad)
             put("nacionalidad", artista.nacionalidad)
             put("fecha_nacimiento", artista.fechaNacimiento)
+            put("latitud", artista.latitud)
+            put("altitud", artista.altitud)
         }
         db.insert("Artista", null, valores)
         db.close()
     }
 
-    //Listar Artista
+    // Listar Artistas
     fun listarArtistas(): List<Artista> {
-        val db = dbHelper.writableDatabase
+        val db = dbHelper.readableDatabase
         val cursor = db.rawQuery("SELECT * FROM Artista", null)
         val artistas = mutableListOf<Artista>()
         while (cursor.moveToNext()) {
-            val id = cursor.getInt(0)
-            val nombre = cursor.getString(1)
-            val edad = cursor.getInt(2)
-            val nacionalidad = cursor.getString(3)
-            val fechaNacimiento = cursor.getString(5)
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+            val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+            val edad = cursor.getInt(cursor.getColumnIndexOrThrow("edad"))
+            val nacionalidad = cursor.getString(cursor.getColumnIndexOrThrow("nacionalidad"))
+            val fechaNacimiento = cursor.getString(cursor.getColumnIndexOrThrow("fecha_nacimiento"))
+            val latitud = cursor.getDouble(cursor.getColumnIndexOrThrow("latitud"))
+            val altitud = cursor.getDouble(cursor.getColumnIndexOrThrow("altitud"))
 
-            artistas.add(Artista(id, nombre, edad, nacionalidad, fechaNacimiento))
+            artistas.add(Artista(id, nombre, edad, nacionalidad, fechaNacimiento, latitud, altitud))
         }
         cursor.close()
         db.close()
         return artistas
     }
 
-    //Actualizar Artista
+    // Actualizar Artista
     fun actualizarArtista(artista: Artista): Boolean {
         val db = dbHelper.writableDatabase
         val valores = ContentValues().apply {
@@ -47,7 +51,8 @@ class Controlador (context: Context) {
             put("edad", artista.edad)
             put("nacionalidad", artista.nacionalidad)
             put("fecha_nacimiento", artista.fechaNacimiento)
-
+            put("latitud", artista.latitud)
+            put("altitud", artista.altitud)
         }
         val rows = db.update(
             "Artista",
@@ -59,19 +64,19 @@ class Controlador (context: Context) {
         return rows > 0
     }
 
-    //Eliminar Artista
-    fun eliminarArtista (ArtistaId: Int): Boolean {
+    // Eliminar Artista
+    fun eliminarArtista(artistaId: Int): Boolean {
         val db = dbHelper.writableDatabase
         val rows = db.delete(
             "Artista",
             "id = ?",
-            arrayOf(ArtistaId.toString())
+            arrayOf(artistaId.toString())
         )
         db.close()
         return rows > 0
     }
 
-    //Crear Obra
+    // Crear Obra
     fun crearObra(artistaId: Int, obra: Obra) {
         val db = dbHelper.writableDatabase
         val valores = ContentValues().apply {
@@ -86,11 +91,11 @@ class Controlador (context: Context) {
         db.close()
     }
 
-    //Listar obras de un artista
+    // Listar Obras de un Artista
     fun listarObrasPorArtista(artistaId: Int): List<Obra> {
         val db = dbHelper.readableDatabase
         val cursor = db.rawQuery(
-            "SELECT * FROM Obra WHERE artista_id = ?", // Actualizado
+            "SELECT * FROM Obra WHERE artista_id = ?",
             arrayOf(artistaId.toString())
         )
         val obras = mutableListOf<Obra>()
@@ -108,7 +113,7 @@ class Controlador (context: Context) {
         return obras
     }
 
-    //Actualizar Obras
+    // Actualizar Obra
     fun actualizarObra(obra: Obra): Boolean {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
@@ -138,10 +143,9 @@ class Controlador (context: Context) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
             val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
             val cursoId = cursor.getInt(cursor.getColumnIndexOrThrow("artista_id"))
-            println("Estudiante: $id, Nombre: $titulo, Curso ID: $cursoId")
+            println("Obra: $id, Título: $titulo, Artista ID: $cursoId")
         }
         cursor.close()
         db.close()
     }
-
 }
